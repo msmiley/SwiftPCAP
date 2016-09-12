@@ -36,7 +36,7 @@ struct SwiftPCAP {
     ///
     /// Get the next packet, if available. This function should not block.
     ///
-    func nextPacket() -> UnsafeBufferPointer<u_char> {
+    func nextPacketUnsafe() -> UnsafeBufferPointer<u_char> {
       // get the next packet, should not block
       let pkt = pcap_next(pd, &currentHeader)
       if (pkt != nil) {
@@ -44,6 +44,13 @@ struct SwiftPCAP {
       }
       
       return UnsafeBufferPointer<u_char>(start: nil, count: 0)
+    }
+    
+    ///
+    /// Safe version of nextPacket copies packet into a Swift [UInt8]
+    ///
+    func nextPacket() -> [UInt8] {
+      return Array(nextPacketUnsafe())
     }
 
     ///
