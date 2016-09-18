@@ -7,14 +7,14 @@ extension SwiftPCAP {
   ///
   /// Uses libpcap through the CPcap wrapper.
   ///
-  class Offline: Base {
+  public class Offline: Base {
     
     ///
     /// Initializer takes the interface name
     ///
     /// - parameter path: The path to the capture file
     ///
-    init(path: String) throws {
+    public init(path: String) throws {
       super.init()
 
       // prepare error buffer for libpcap to use

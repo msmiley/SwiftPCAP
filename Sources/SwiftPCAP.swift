@@ -3,12 +3,12 @@ import CPcap
 ///
 /// Struct defines the SwiftPCAP Module
 ///
-struct SwiftPCAP {
+public struct SwiftPCAP {
 
   ///
   /// Errors specific to this module
   ///
-  enum Errors: Error {
+  public enum Errors: Error {
     case errorMessage(msg: String)
     case warningMessage(msg: String)
     case unknownError
@@ -17,7 +17,7 @@ struct SwiftPCAP {
   ///
   /// SwiftPCAP base class
   ///
-  class Base {
+  public class Base {
 
     /// the libpcap pcap_t handle
     var pd: OpaquePointer? = nil
@@ -55,6 +55,8 @@ struct SwiftPCAP {
 
     ///
     /// Handle error return codes (defined in pcap.h)
+    ///
+    /// - parameter rc: An Int return code
     ///
     func handleReturnCode(_ rc: Int32) throws {
       if (rc != 0) {

@@ -7,7 +7,7 @@ extension SwiftPCAP {
   ///
   /// Uses libpcap through the CPcap wrapper.
   ///
-  class Live: Base {
+  public class Live: Base {
       
     /// the libpcap buffer size (default 100MB)
     var bufferSize: Int32
@@ -22,7 +22,7 @@ extension SwiftPCAP {
     /// - parameter bufferSize: The size of the libpcap input buffer
     /// - parameter snaplen: The libpcap snaplen parameter (packet size to capture)
     ///
-    init(interface: String, bufferSize: Int32 = 104857600, snaplen: Int32 = 8192) throws {
+    public init(interface: String, bufferSize: Int32 = 104857600, snaplen: Int32 = 8192) throws {
       // initialize Live capture parameters
       self.bufferSize = bufferSize
       self.snaplen = snaplen
@@ -48,6 +48,8 @@ extension SwiftPCAP {
 
     ///
     /// Set live-capture libpcap options
+    ///
+    /// - throws: SwiftPCAP.Errors
     ///
     private func setOptions() throws {
       // libpcap options
